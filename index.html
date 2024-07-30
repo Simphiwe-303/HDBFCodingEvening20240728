@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="global.css" rel="stylesheet"/>
+    <link href="utils.css" rel="stylesheet"/>
+    <script>
+        function showInput() {
+            document.querySelector(".show-btn").style.display = "none";
+            document.querySelector(".form").style.display = "block";
+            document.querySelector(".username").focus();
+        };
+
+        onlineUsers = []
+        
+        const JoinedInUserName = (e) => {
+            event.preventDefault();
+            const userName = document.querySelector(".username");
+            name = userName.value;
+            onlineUsers.push(name);
+            document.querySelector(".form").style.display = "none";
+            document.querySelector(".chat-container").style.display = "block";
+
+            const johnSelector = document.querySelector(".message-blue");
+            const janeSelector = document.querySelector(".message-grey");
+
+            function sendMessage() {
+                event.preventDefault();
+
+                function createChatMessageElement(message) {
+                    document.querySelector("message-sender").innerHTML = `${message.sender}`
+                    document.querySelector("message-text").innerHTML = `${message.text}`
+                    document.querySelector("message-timestamp").innerHTML = `${message.timestamp}`
+                }
+
+                const chatMessages = document.querySelector(".chat-messages");
+                const chatInput = document.querySelector(".chat-input");
+                const timestamp = new Date().toLocaleString('en-US', {hour: 'numeric', minute: 'numeric', hour12: true});
+                const message = {
+                    sender: messageSender,
+                    text: chatInput.value,
+                    timestamp: timestamp,
+                }
+                document.querySelector(".chat-input").focus();
+
+                chatMessages.innerHTML = createChatMessageElement(message)
+            };
+
+            document.querySelector(".send-btn").addEventListener("click", sendMessage());
+            
+        };
+
+    </script>
+</head>
+<body>
+    <div class="form-container container">
+        <div class="show-btn">
+            <button onclick="showInput()">Join Chat_Room</button>
+        </div>
+        <div class="form">
+            <form class="chat-input-form1">
+                <div class="fields">
+                    <input class="username" type="text" placeholder="Enter sername" required/>
+                    <button type="submit" onclick="JoinedInUserName()">Submit</button>
+                </div>
+            </form>
+        </div>
+        <p class="demo"></p>
+    </div>
+    
+    <div class="chat-container">
+        <div class="chat-messages">
+            <div class="message-blue message active-person">
+                <div class="message-sender">Simphiwe</div>
+                <div class="message-text">Hey Sphesihle what's up</div>
+                <div class="message-timestamp">10:30 PM</div>
+            </div>
+            <div class="message-grey message active-person">
+                <div class="message-sender">Sphesihle</div>
+                <div class="message-text">Not much buddy</div>
+                <div class="message-timestamp">10:45 PM</div>
+            </div>
+            <div class="message-blue message active-person">
+                <div class="message-sender">Simphiwe</div>
+                <div class="message-text">Hey Sphesihle what's up</div>
+                <div class="message-timestamp">10:30 PM</div>
+            </div>
+            <div class="message-grey message active-person">
+                <div class="message-sender">Sphesihle</div>
+                <div class="message-text">Not much buddy</div>
+                <div class="message-timestamp">10:45 PM</div>
+            </div>
+            <div class="message-blue message active-person">
+                <div class="message-sender">Simphiwe</div>
+                <div class="message-text">Hey Sphesihle what's up</div>
+                <div class="message-timestamp">10:30 PM</div>
+            </div>
+            <div class="message-grey message active-person">
+                <div class="message-sender">Sphesihle</div>
+                <div class="message-text">Not much buddy</div>
+                <div class="message-timestamp">10:45 PM</div>
+            </div>
+            <div class="message-blue message active-person">
+                <div class="message-sender">Simphiwe</div>
+                <div class="message-text">Hey Sphesihle what's up</div>
+                <div class="message-timestamp">10:30 PM</div>
+            </div>
+            <div class="message-grey message active-person">
+                <div class="message-sender">Sphesihle</div>
+                <div class="message-text">Not much buddy</div>
+                <div class="message-timestamp">10:45 PM</div>
+            </div>
+        </div>
+        <form class="chat-input-form2">
+            <textarea type="text" class="chat-input" placeholder="Type message..." required></textarea>
+            <button type="submit" class="send-btn">Send</button>
+        </form>
+    </div>
+</body>
+</html>
